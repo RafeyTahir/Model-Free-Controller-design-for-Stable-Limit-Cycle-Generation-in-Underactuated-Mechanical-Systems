@@ -2,9 +2,12 @@
 </div>
 
 <div align="center">
-<img width="605" src="Dual_Model_Free_Code/Results/DuaLMFC2_1.png" />
+<img width="605" src="Dual_Model_Free_Code/Results/Experiment/Setup_RIP.png" />
 </div>
 
+<div align="center">
+<img width="605" src="Dual_Model_Free_Code/Results/DuaLMFC2_1.png" />
+</div>
 
 <div align="center">
 <img width="605" src="Dual_Model_Free_Code/Results/Simulations/RIP/Lmit_cycle_RIP_fast-ezgif.com-crop.gif" />
