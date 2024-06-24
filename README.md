@@ -5,6 +5,12 @@
 <img width="605" src="Dual_Model_Free_Code/Results/Experiment/Setup_RIP.png" />
 </div>
 
+
+## Description
+This project proposes a hierarchical model-free control framework to generate stable limit cycle generation for underactuated mechanical systems. The framework utilizes a high-level control structure that generates reference trajectories while maintaining stable internal dynamics. We then propose a low-level model-free controller for the underactuated system, which is utilized to track those reference trajectories on the unactuated coordinates. The proposed framework provides excellent tracking while maintaining the robustness and stability analysis of the low-level controller. We evaluate our proposed framework on the Rotary Inverted Pendulum (RIP), Vertical Take-Off and Landing (VTOL) aircraft model, both in simulation and on experimental hardware, and in simulation only for the leg-foot model on deformed ground.
+
+This repository offers all necessary materials for implementing and testing the framework, including software simulations in Matlab Simulink 2023b and hardware demonstrations using QNET 2.0 Rotary Pendulum with NI LabVIEW Suite 2021.
+
 <div align="center">
 <img width="605" src="Dual_Model_Free_Code/Results/DuaLMFC2_1.png" />
 </div>
@@ -12,12 +18,6 @@
 <div align="center">
 <img width="605" src="Dual_Model_Free_Code/Results/Simulations/RIP/Lmit_cycle_RIP_fast-ezgif.com-crop.gif" />
 </div>
-
-## Description
-This project proposes a hierarchical model-free control framework to generate stable limit cycle generation for underactuated mechanical systems. The framework utilizes a high-level control structure that generates reference trajectories while maintaining stable internal dynamics. We then propose a low-level model-free controller for the underactuated system, which is utilized to track those reference trajectories on the unactuated coordinates. The proposed framework provides excellent tracking while maintaining the robustness and stability analysis of the low-level controller. We evaluate our proposed framework on the Rotary Inverted Pendulum (RIP), Vertical Take-Off and Landing (VTOL) aircraft model, both in simulation and on experimental hardware, and in simulation only for the leg-foot model on deformed ground.
-
-This repository offers all necessary materials for implementing and testing the framework, including software simulations in Matlab Simulink 2023b and hardware demonstrations using QNET 2.0 Rotary Pendulum with NI LabVIEW Suite 2021.
-
 ## Paper and Video References
 
 The work is published in IEEE Robotics and Automation Letters 2023. The hardware experiment video of the framework application is featured in [IEEE Spectrum Video Friday](https://spectrum.ieee.org/video-friday-acromonk).
