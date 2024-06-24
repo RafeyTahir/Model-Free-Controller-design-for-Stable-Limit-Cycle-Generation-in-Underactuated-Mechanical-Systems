@@ -7,7 +7,7 @@
 
 
 <div align="center">
-<img width="605" src="hardware/images/5x-tvlqr.gif" />
+<img width="605" src="Dual_Model_Free_Code/Results/Simulations/RIP/Lmit_cycle_RIP_fast-ezgif.com-crop.gif" />
 </div>
 
 ## Description
