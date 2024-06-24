@@ -2,7 +2,7 @@
 </div>
 
 <div align="center">
-<img width="605" src="hardware/images/poster_new.png" />
+<img width="605" src="Dual_Model_Free_Code/Results/DuaLMFC2_1.png" />
 </div>
 
 
