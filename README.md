@@ -20,7 +20,6 @@ This repository offers all necessary materials for implementing and testing the 
 </div>
 ## Paper and Video References
 
-The work is published in IEEE Robotics and Automation Letters 2023. The hardware experiment video of the framework application is featured in [IEEE Spectrum Video Friday](https://spectrum.ieee.org/video-friday-acromonk).
 
 Further links:
 * Video is available on [YouTube](https://youtu.be/OIwE66wXiWY).
