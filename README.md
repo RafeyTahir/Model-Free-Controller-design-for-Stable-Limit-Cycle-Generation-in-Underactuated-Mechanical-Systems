@@ -23,30 +23,10 @@ This repository offers all necessary materials for implementing and testing the 
 The work is published in IEEE Robotics and Automation Letters 2023. The hardware experiment video of the framework application is featured in [IEEE Spectrum Video Friday](https://spectrum.ieee.org/video-friday-acromonk).
 
 Further links:
-* Paper is available on [IEEE](https://ieeexplore.ieee.org/document/10106397) and [arXiv](https://arxiv.org/abs/2305.08373).
 * Video is available on [YouTube](https://youtu.be/OIwE66wXiWY).
 
-## Documentation
-
-The dynamics of the framework are explained [here](hardware/acrm-equations.md). Additionally, [mechatronics design](hardware/testbench-description.md), [behavior generation](software/python/simulation/behavior_generation/README.md), and [control](software/python/simulation/behavior_control/README.md) for continuous operation are described in their respective readme files.
-
-* [Mechatronics Design](hardware/testbench-description.md)
-* [Behavior Generation](software/python/simulation/behavior_generation/README.md)
-* [Behavior Control](software/python/simulation/behavior_control/README.md)
-* [Software Guide](software/python/README.md)
-* [Bill Of Materials (BOM)](hardware/bills-of-materials.md)
-
-The CAD file is also provided on grabCAD.com. You can use the 3D viewer from their website to display the 3D model directly within your browser.
- - [Display AcroMonk in 3D](https://grabcad.com/library/acromonk-1)
 
 ## Authors
-
-* [Shivesh Kumar](https://robotik.dfki-bremen.de/en/about-us/staff/person/shku02) (Project Supervisor)
-* [Mahdi Javadi](https://robotik.dfki-bremen.de/en/about-us/staff/person/maja04) (Hardware and Software Maintainer, Trajectory Optimization and Stabilization)
-* [Daniel Harnack](https://robotik.dfki-bremen.de/en/about-us/staff/daha03.html) (Software Maintainer, Reinforcement Learning)
-* [Shubham Vyas](https://robotik.dfki-bremen.de/en/about-us/staff/person/shvy01) (Trajectory Optimization, Hardware Concept)
-* [Daniel Pizzutilo](https://robotik.dfki-bremen.de/de/ueber-uns/mitarbeiter/dapi01) (Mechatronics Design)
-* Paula Stocco (Trajectory Optimization and Stabilization)
 * Muhammad Rafey Tahir (Hierarchical Control Framework Development)
 
 Feel free to contact us if you have questions about the test bench. Enjoy!
@@ -70,15 +50,12 @@ When working with a real system, be careful and mind the following safety measur
 
 ## Acknowledgments
 
-This work has been performed in the M-RoCK project funded by the German Aerospace Center (DLR) with federal funds (Grant Number: FKZ 01IW21002) from the Federal Ministry of Education and Research (BMBF) and is additionally supported with project funds from the federal state of Bremen for setting up the Underactuated Robotics Lab (Grant Number: 201-342-04-2/2021-4-1). The fourth author acknowledges support from the Stardust Reloaded project which has received funding from the European Union’s Horizon 2020 research and innovation program under the Marie Skłodowska-Curie grant agreement No 813644.
+This work has been performed in School of Electrical Engineering and Computer Sciences at National University of Sciences and Technology, Pakistan. 
 <div align="center">
 <img width="500" src="hardware/images/Logo_Underactuated_Lab.gif" />
 </div>
 
 ## License
 
-This work has been released under the BSD 3-Clause License. Details and terms of use are specified in the LICENSE file within this repository. Note that we do not publish third-party software, hence software packages from other developers are released under their own terms and conditions, e.g., Stable baselines (MIT License) and TensorFlow (Apache License v2.0). If you install third-party software packages along with this repo, ensure you follow each individual license agreement.
 
 ## Citation
-
-1. Javadi M., Harnack D., Stocco P., Kumar S., Vyas S., Pizzutilo D., Kirchner F., (2022). AcroMonk: A Minimalist Underactuated Brachiating Robot. In: IEEE Robotics and Automation Letters (RA-L), vol. 8, no. 6, pp. 3637-3644, June 2023, doi: 10.1109/LRA.2023.3269296.
