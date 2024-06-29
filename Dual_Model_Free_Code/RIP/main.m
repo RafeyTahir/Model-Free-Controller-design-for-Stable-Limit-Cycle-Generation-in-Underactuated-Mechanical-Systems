@@ -59,8 +59,8 @@ Ts_2 = 0.002;
 Ti = 0;
 Tf = 15;      % Final time
 t = Ti:Ts_2:Tf-Ts_2;  % Time vector
-amp = 0;      % Amplitude of the reference signal
-ref_2 = amp * ones(size(t));  % Reference signal
+amp = 0;      % Amplitude of the reference signal for underactuated Joint
+ref_2 = amp * ones(size(t));  % Reference signal for underactuated Joint
 
 % Calculate derivatives of the reference signal
 ref_2dot = diff(ref_2) / Ts_2;
@@ -80,7 +80,7 @@ traj = zeros(1, 3000);
 
 % Main Loop for Control
 for b = Ti+1:Tf
-    [ref1] = polynomial12(b, U1);
+    [ref1] = polynomial12(b, U1); % Reference Signal generated through 6-Degree polynomial
     ref2 = ref1 * aaa;
     repeated_trajectory = flip(ref2);
     ref = [ref2, repeated_trajectory];
