@@ -68,8 +68,8 @@ t = Ti:Ts_2:Tf-Ts_2; % Time vector
 f = 0.5; % Frequency
 fs = 100; % Sampling frequency
 amp = 0; % Amplitude of reference trajectory
-ref_2 = amp * ones(size(t)); % Reference trajectory for unactuated joint
-ref_2dot = diff(ref_2) / Ts_2; % Derivative of the reference trajectory
+ref_2 = amp * ones(size(t)); % Reference trajectory for actuated joint
+ref_2dot = diff(ref_2) / Ts_2; % Derivative of the actuated joint reference trajectory
 ref_2ddot = diff(ref_2dot) / Ts_2; % Second derivative of the reference trajectory
 
 % Pad the reference trajectory derivatives to match the length of the original reference
@@ -86,7 +86,7 @@ traj = zeros(1, 3000);
 % Main simulation loop
 for b = Ti+1:Tf
     % Generate reference trajectory for the current time step
-    [ref1] = polynomial12(b, U1);
+    [ref1] = polynomial12(b, U1);    % Reference trajectory for underactuated joint generated through 6-D polynomial
     ref2 = ref1 * amplitude_factor;
     repeated_trajectory = flip(ref2);
     ref = [ref2, repeated_trajectory];
