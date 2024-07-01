@@ -69,7 +69,7 @@ After the simulation, the script calculates the root mean square error (RMSE) be
 
 To visualize the results, uncomment the plotting sections in the script.
 <div align="center">
-<img width="605" src="Dual_Model_Free_Code/Acrobot/Tracking of unactuated joint.png" />
+<img width="605" src="Dual_Model_Free_Code/Acrobot/Tracking.png" />
 </div>
 
 <div align="center">
