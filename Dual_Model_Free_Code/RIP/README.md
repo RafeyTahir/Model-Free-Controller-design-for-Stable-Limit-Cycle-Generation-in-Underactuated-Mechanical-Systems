@@ -109,6 +109,20 @@ rmse = sqrt(mean_squared_difference);
 fprintf('The RMSE between the Desired and Estimated is: %f\n', rmse);
 ```
 
+To visualize the results, uncomment the plotting sections in the script.
+<div align="center">
+<img width="605" src="Tracking.png" />
+</div>
+To visualize the results, uncomment the plotting sections in the script.
+<div align="center">
+<img width="605" src="Tracking.png" />
+</div>
+To visualize the results, uncomment the plotting sections in the script.
+<div align="center">
+<img width="605" src="Tracking.png" />
+</div>
+
+
 ## How to Run
 
 1. Ensure you have MATLAB installed.
