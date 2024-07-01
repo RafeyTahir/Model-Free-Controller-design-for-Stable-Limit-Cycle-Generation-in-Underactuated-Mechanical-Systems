@@ -81,8 +81,8 @@ To visualize the results, uncomment the plotting sections in the script.
 </div>
 
 <div align="center">
-<img width="605" src="PP_u_acro.png" />
-  <img width="605" src="pp_a_acrot.png" />
+<img width="300" src="PP_u_acro.png" />
+  <img width="300" src="pp_a_acrot.png" />
 </div>
 
 ## Usage
