@@ -29,7 +29,7 @@ theta_1dots = zeros(1, 30000);
 theta_1s = zeros(1, 30000);
 extended_trajectory = [];
 amplitude_factor = [-5, 5];
-aaa = 0.087;
+aaa = 0.087;       %Amplitude in radians
 normalized_signal = 0;
 p_min = 0;
 p_max = 0;
@@ -62,7 +62,7 @@ t = Ti:Ts_2:Tf-Ts_2;  % Time vector
 amp = 0;      % Amplitude of the reference signal for actuated Joint
 ref_2 = amp * ones(size(t));  % Reference signal for actuated Joint
 
-% Calculate derivatives of the reference signal
+% Calculate derivatives of the reference signal (Actuated Joint)
 ref_2dot = diff(ref_2) / Ts_2;
 ref_2ddot = diff(ref_2dot) / Ts_2;
 
@@ -75,7 +75,7 @@ if length(ref_2ddot) < length(ref_2)
     ref_2ddot = [ref_2ddot, ref_2ddot(end)];
 end
 
-% Preallocate Trajectory
+% Preallocate Trajectory 
 traj = zeros(1, 3000);
 
 % Main Loop for Control
@@ -83,10 +83,10 @@ for b = Ti+1:Tf
     [ref1] = polynomial12(b, U1); % Reference Signal generated through 6-Degree polynomial for underactuated joint
     ref2 = ref1 * aaa;
     repeated_trajectory = flip(ref2);
-    ref = [ref2, repeated_trajectory];
+    ref = [ref2, repeated_trajectory];     % Reference Trajectory of Underactuated Joint.
 
-    theta2_dot = diff(ref) / Ts;
-    theta_ddot2 = diff(theta2_dot) / Ts;
+    theta2_dot = diff(ref) / Ts;           % 1st derivative of reference trajectory
+    theta_ddot2 = diff(theta2_dot) / Ts;   % 2nd derivative of reference trajectory
 
     % Adjust lengths of calculated derivatives
     if length(theta2_dot) < length(ref)
@@ -113,7 +113,7 @@ for b = Ti+1:Tf
         B = (mp * lr * lp * cc) / 2;
         C = ((mp * lp^2) / 4) + jp;
         D = mp * g * (lp/2) * ss - (mp/2) * lr * ss * theta_1dot * theta_2dot;
-        Phi = (C - (B^2) / A) * theta_2ddot + D - theta_2ddot;
+        Phi = (C - (B^2) / A) * theta_2ddot + D - theta_2ddot;   % Phi=F_{u} (As mention in paper) vector that contains all the system dynamics in terms of unactuated joint
         Phik1 = Phi;  % k1 = k + 1
         Phidd = (Phik1 - Phik) / Ts_2;
         Phik_1 = Phik;
@@ -126,12 +126,12 @@ for b = Ti+1:Tf
         Xk_1 = XX;
 
         Phi_hatd = -a * XX - b1 * ed_2 + Phidk_1;
-        Phi_hat = Ts_2 * Phi_hatd + Phi_hat;
+        Phi_hat = Ts_2 * Phi_hatd + Phi_hat;       
 
         Phi_hat11 = -a * (ed_2 + kd * e_2 + kp * int_e);  % m = 1
-        Phi_hat22 = -a * (ed_2 + kd * e_2 + kp * int_e) - a_o * (e_2 + kd * int_e + iint_e * kp);
+        Phi_hat22 = -a * (ed_2 + kd * e_2 + kp * int_e) - a_o * (e_2 + kd * int_e + iint_e * kp);     % Estimate of Phi or F_{u} vector 
 
-        U = (Phi_hat22 + thetaddot_2 - kd * ed_2 - kp * e_2);  % Control input
+        U = (Phi_hat22 + thetaddot_2 - kd * ed_2 - kp * e_2);   % Control input (Low Level Controller)
 
         % Store Variables
         Phi_hatstore(:, (b-1)*2000 + i) = Phi_hat11 + theta_2ddot;
@@ -177,7 +177,7 @@ theta1_store(:, (b-1)*2000 + i) = theta_1;
 theta1d_store(:, (b-1)*2000 + i) = theta_1dot;
 theta1dd_store(:, (b-1)*2000 + i) = theta_1ddot;
 
-% Intermediate calculations for every 1000th iteration
+% Intermediate calculations for every 1000th iteration  after half-period
 if i == 1000
     avg = [theta1_store(:, ((b*1000)+1)-i), theta_1];
     A2 = mean(avg);
@@ -188,7 +188,7 @@ if i == 1000
     e2dd = (ed2 - e2do) / Ts;
     e2do = ed2;
 
-    % Update for the second controller
+    % Update for the second controller (High Level Controller)
     Phi1 = theta_11ddot * ((A - B^2) / C) - B * D / C - theta_11ddot;
     Phik11 = Phi1;
     Phidd1 = (Phik11 - Phik1) / Ts_2;
@@ -205,11 +205,11 @@ if i == 1000
     Phi_hatd1 = -a * XX1 - b1 * e2 + Phidk_11;
     Phi_hat1 = Ts * Phi_hatd1 + Phi_hat1;
 
-    U4 = (Phi_hat1 - kd_1 * ed2 - kp_1 * e2);
+    U4 = (Phi_hat1 - kd_1 * ed2 - kp_1 * e2);    % Control Input (High Level Controller)
 end
 end
 
-% Adjust control input U1 based on the error
+% Adjust control input U1 based on the error (Actuated Joint) e2 (Normalization)
 if e2 < -0.5
     p = 0.38;  % Large negative error
 elseif e2 < -0.05 && e2 > -0.5
@@ -225,7 +225,7 @@ elseif e2 > 0.05 && e2 < 0.5
 elseif e2 < 0.05 && e2 > -0.07
     p = 0.5;
 end
-U1 = p;
+U1 = p;   % Final Parameter that will be used by polynomail for trajectory generation.
 
 end
 
