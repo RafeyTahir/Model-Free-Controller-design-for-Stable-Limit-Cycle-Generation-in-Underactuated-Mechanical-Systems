@@ -65,6 +65,7 @@ print('-dpng', '-r300', 'poly');  % Save the plot as a PNG file
 ```
 
 ### Explanation
+
 </div>
 <div align="center">
 <img width="605" src="Dual_Model_Free_Code/Results/poly.png" />
