@@ -111,7 +111,7 @@ fprintf('The RMSE between the Desired and Estimated is: %f\n', rmse);
 
 To visualize the results, uncomment the plotting sections in the script.
 <div align="center">
-<img width="605" src="Dual_Model_Free_Code/Results/Simulations/RIP/RIP_na_final_33.png" />
+<img width="605" src="Results/Simulations/RIP/RIP_na_final_33.png" />
 </div>
 To visualize the results, uncomment the plotting sections in the script.
 <div align="center">
