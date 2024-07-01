@@ -80,6 +80,11 @@ To visualize the results, uncomment the plotting sections in the script.
 <img width="605" src="Control input.png" />
 </div>
 
+<div align="center">
+<img width="605" src="PP_u_acro.png" />
+  <img width="605" src="pp_a_acrot.png" />
+</div>
+
 ## Usage
 Run the script in MATLAB to simulate the Acrobot control system. Adjust the parameters as needed to explore different control scenarios and observe the system's behavior.
 
