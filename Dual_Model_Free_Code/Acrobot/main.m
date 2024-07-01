@@ -31,10 +31,10 @@ p_min = [0];
 p_max = [0];
 G = [0];
 GG = [0];
-dist = 8; % Distance parameter
+dist = 8; % Amplitude of Disturbance
 e_2o = [0]; % Error in unactuated joint angle
 e2o = [0];
-e2do = [0];
+e2do = [0]; % 1st derivative of the error.
 
 % Controller gains
 a_o = 2;
@@ -89,9 +89,9 @@ for b = Ti+1:Tf
     [ref1] = polynomial12(b, U1);    % Reference trajectory for underactuated joint generated through 6-D polynomial
     ref2 = ref1 * amplitude_factor;
     repeated_trajectory = flip(ref2);
-    ref = [ref2, repeated_trajectory];
-    theta2_dot = diff(ref) / Ts;
-    theta_ddot2 = diff(theta2_dot) / Ts;
+    ref = [ref2, repeated_trajectory];    % Reference trajectory of underactuated joint 2-sec
+    theta2_dot = diff(ref) / Ts;          % 1st derivative of Reference trajectory
+    theta_ddot2 = diff(theta2_dot) / Ts;  % 2nd derivative of Reference trajectory
 
     % Pad the trajectory derivatives to match the length of the original reference
     if length(theta2_dot(1,:)) < length(ref)
@@ -104,13 +104,13 @@ for b = Ti+1:Tf
     % Inner loop for control calculations
     for i = Ti+1:2000
         % Calculate errors and their integrals
-        e_2 = theta_2 - ref(1,i);
+        e_2 = theta_2 - ref(1,i);        % e_2 is the error of difference b\w actual position of unactuated joint and it's reference 
         int_e = e_2o + e_2 * Ts;
         e_2o = e_2;
         iint_e = int_e_o + int_e * Ts;
         int_e_o = int_e;
-        ed_2 = theta_2dot - theta2_dot(:,i);
-        edd_2 = theta_2ddot - theta_ddot2(:,i);
+        ed_2 = theta_2dot - theta2_dot(:,i);     % 1st derivative of the error
+        edd_2 = theta_2ddot - theta_ddot2(:,i);  % 2nd derivative of the error
         thetaddot_2 = theta_ddot2(:,i);
 
         % Calculate trigonometric functions of joint angles
@@ -135,7 +135,7 @@ for b = Ti+1:Tf
         g_2 = g1 - m21 * inv(m22) * g2;
 
         % Calculate the control input Phi
-        Phi = (m_2) * theta_2ddot + h_2 + g_2 - theta_2ddot;
+        Phi = (m_2) * theta_2ddot + h_2 + g_2 - theta_2ddot;    % Phi=F_{u} (As mention in paper) vector that contains all the system dynamics in terms of unactuated joint
         Phik1 = Phi; % k1=k+1
         Phidd = (Phik1 - Phik) / Ts;
         Phik_1 = Phik;
@@ -149,12 +149,12 @@ for b = Ti+1:Tf
         Xk_1 = XX;
 
         Phi_hatd = -a * XX - b1 * ed_2 + Phidk_1;
-        Phi_hat = Ts * Phi_hatd + Phi_hat;
+        Phi_hat = Ts * Phi_hatd + Phi_hat;              % Estimate of Phi or F_{u} vector
 
-        U2 = (Phi_hat + thetaddot_2 - kd * ed_2 - kp * e_2) * 1 / (-m21 * inv(m22));
+        U2 = (Phi_hat + thetaddot_2 - kd * ed_2 - kp * e_2) * 1 / (-m21 * inv(m22));  
         Phi_hatstore(:,i) = Phi_hat + theta_2ddot;
         Phi_store(:,i) = Phi + theta_2ddot;
-        U = U2 * (-m21 * inv(m22)) + theta_2ddot;
+        U = U2 * (-m21 * inv(m22)) + theta_2ddot;        % Control Input (Low Level Controller)
         U_store(:,i) = U;
 
         % Store the computed value of XX
@@ -201,7 +201,7 @@ for b = Ti+1:Tf
         theta1d_store(:, (b-1) * 2000 + i) = theta_1dot;
         theta1dd_store(:, (b-1) * 2000 + i) = theta_1ddot;
 
-        % Additional control calculations for adaptive control (e2, ed2, e2dd)
+        % Additional control calculations for adaptive control (e2, ed2, e2dd)  after half-period
         if i == 1000
             avg = [theta1_store(:, ((b*1000) + 1) - i), theta_1];
             A2 = mean(avg);
@@ -212,14 +212,14 @@ for b = Ti+1:Tf
             e2dd = (ed2 - e2do) / Ts;
             ed2o = ed2;
 
-            % Compute Phi and its derivatives for joint 1
+            % Compute Phi=F_{a} and its derivatives for joint 1  
             Phi1 = (m_1) * theta_1ddot + h_1 + g_1 - theta_1ddot;
             Phik11 = Phi1;
             Phidd1 = (Phik11 - Phik1) / Ts_2;
             Phik_11 = Phik1;
             Phik1 = Phik11;
 
-            % Update the control input for joint 1
+            % Update the control input for joint 1 
             Phidk_11 = a1 * Xk_11 + Phi_hatd1 + b1 * ed_2;
             Phid1 = Phidk_11 + Phidk_11 - Phidk_21;
             Phidk_21 = Phidk_11;
@@ -227,11 +227,11 @@ for b = Ti+1:Tf
             Xk_11 = XX1;
             Phi_hatd1 = -a1 * XX1 - b1 * ed_2 + Phidk_11;
             Phi_hat1 = Ts * Phi_hatd1 + Phi_hat1;
-            U4 = (Phi_hat1 - kd1 * ed_2 - kp1 * e_2);
+            U4 = (Phi_hat1 - kd1 * ed_2 - kp1 * e_2); % Control Input (High Level Controller)
         end
     end
 
-        % Adjust the control parameter U1 based on the error e2
+        % Adjust the control parameter U4 based on the error (Actuated Joint) e2 (Normalization)
   if e2 < -0.5
             p = 0.38; % Large negative error
         elseif e2 < -0.05 && e2 > -0.5
@@ -247,7 +247,7 @@ for b = Ti+1:Tf
         elseif e2 < 0.05 && e2 > -0.07
             p = 0.5;
         end
-        U1 = p;
+        U1 = p;   % Final Paramerer that will be used by polynomail for trajectory generation.
 
     end % End of the main loop
 
