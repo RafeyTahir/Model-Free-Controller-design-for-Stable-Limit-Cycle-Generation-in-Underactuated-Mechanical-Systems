@@ -120,8 +120,8 @@ To visualize the results, uncomment the plotting sections in the script.
 <img width="605" src="RIP_CTRL3.png" />
 </div>
 <div align="center">
-<img width="605" src="Phase portrait of underactuated joint.png" />
-<img width="605" src="Phase portrait of underactuated joint.png" />
+<img width="300" src="Phase portrait of underactuated joint.png" />
+<img width="300" src="Phase portrait of underactuated joint.png" />
 </div>
 
 ## How to Run
