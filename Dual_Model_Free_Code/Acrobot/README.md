@@ -73,11 +73,11 @@ To visualize the results, uncomment the plotting sections in the script.
 </div>
 
 <div align="center">
-<img width="605" src="Dual_Model_Free_Code/Acrobot/Velocity of underactuated joint.png" />
+<img width="605" src="Velocity of underactuated joint.png" />
 </div>
 
 <div align="center">
-<img width="605" src="Dual_Model_Free_Code/Acrobot/Control input.png" />
+<img width="605" src="Control input.png" />
 </div>
 
 ## Usage
