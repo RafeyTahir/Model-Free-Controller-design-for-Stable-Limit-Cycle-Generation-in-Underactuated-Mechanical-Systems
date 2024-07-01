@@ -15,7 +15,7 @@ This MATLAB script simulates the control of a rotary inverted pendulum system us
 
 ## Introduction
 
-The rotary inverted pendulum is a classic problem in control theory and robotics. It consists of a pendulum attached to a rotary arm, and the goal is to control the arm's rotation to keep the pendulum upright. This script uses a PD controller to achieve this goal by calculating the necessary control inputs to maintain the pendulum's balance and follow a desired trajectory.
+The rotary inverted pendulum is a classic problem in control theory and robotics. It consists of a pendulum attached to a rotary arm, and the goal is to control the underactuated arm and generate stable limit cycles. This script uses a Robust model-free adaptive controller to achieve this goal by calculating the necessary control inputs to maintain the pendulum's balance and follow a desired trajectory.
 
 ## Physical Parameters
 
@@ -86,7 +86,7 @@ ref_2 = amp * ones(size(t));  % Reference signal for actuated Joint
 
 ## Main Loop for Control
 
-The main loop runs the control algorithm, updating the state of the system at each time step. It generates the reference trajectory, calculates control inputs, and updates the system states accordingly.
+The main loop runs the control algorithm, updating the state of the system at each time step. It generates the reference trajectory for underactuated joint, calculates control inputs for both low level and high level controller, and updates the system states accordingly.
 
 ```matlab
 for b = Ti+1:Tf
