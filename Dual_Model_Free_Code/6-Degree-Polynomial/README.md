@@ -68,7 +68,7 @@ print('-dpng', '-r300', 'poly');  % Save the plot as a PNG file
 
 </div>
 <div align="center">
-<img width="605" src="Dual_Model_Free_Code/Results/poly.png" />
+<img width="605" src="poly.png" />
 </div>
 
 To generate a stable limit cycle, reference trajectories \(q^{*}_{na}(b,\Gamma,t)\) for the non-actuated coordinate are designed. These trajectories must belong to \(C^{2}\) to ensure no discontinuities in position, velocity, and acceleration. The high-level controller calculates the value of the parameter `b` to bring the active joint \(q^{*}_{a}\) to a desired state. 
