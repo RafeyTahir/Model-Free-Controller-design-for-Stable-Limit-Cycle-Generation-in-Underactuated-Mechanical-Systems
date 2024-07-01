@@ -247,7 +247,7 @@ for b = Ti+1:Tf
         elseif e2 < 0.05 && e2 > -0.07
             p = 0.5;
         end
-        U1 = p;   % Final Paramerer that will be used by polynomail for trajectory generation.
+        U1 = p;   % Final Parameter that will be used by polynomail for trajectory generation.
 
     end % End of the main loop
 
