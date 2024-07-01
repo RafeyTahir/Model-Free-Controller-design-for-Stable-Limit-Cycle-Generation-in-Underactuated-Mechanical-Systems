@@ -113,15 +113,16 @@ To visualize the results, uncomment the plotting sections in the script.
 <div align="center">
 <img width="605" src="RIP_na_final_33.png" />
 </div>
-To visualize the results, uncomment the plotting sections in the script.
 <div align="center">
 <img width="605" src="RIP_ua_velo33.png" />
 </div>
-To visualize the results, uncomment the plotting sections in the script.
 <div align="center">
 <img width="605" src="RIP_CTRL3.png" />
 </div>
-
+<div align="center">
+<img width="605" src="Phase portrait of underactuated joint.png" />
+<img width="605" src="Phase portrait of underactuated joint.png" />
+</div>
 
 ## How to Run
 
